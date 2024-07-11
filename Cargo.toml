@@ -1,6 +1,43 @@
-[package]
-name = "cargo-wat"
-version = "0.1.0"
-edition = "2021"
+# # [package]
+package = { name = "cargo-wat", version = "0.1.0", edition = "2021" }
+# profile = { release = { opt-level = 3 } }
+
+# target.x86_64-pc-windows-msvc.dependencies = { serde = { version = "1.0", features = [
+#     "derive",
+# ] } }
+
 
 [dependencies]
+serde = "1.0"
+# dependencies = { serde = "1.0" }
+
+[target.x86_64-pc-windows-msvc]
+dependencies = { serde = { version = "1.0", features = ["derive"] } }
+# serde = { version = "1.0", features = ["derive"] }
+# [profile]
+# release.opt-level = 2
+
+# # []
+
+# [package]
+# name = "cargo-wat"
+# version = "0.1.0"
+# edition = "2021"
+
+# [dependencies]
+# serde = "1.0"
+
+# sample [[bin]]
+
+# [[bin]]
+# name = "example"
+# path = "src/bin/example.rs"
+
+# [[bin]]
+# name = "another"
+# path = "src/bin/another.rs"
+
+bins = [
+    { name = "example", path = "src/bin/example.rs" },
+    { name = "another", path = "src/bin/another.rs" }
+]
