@@ -1,83 +1,21 @@
-# # [package]
-# package = { name = "cargo-wat", version = "0.1.0", edition = "2021" }
-# profile = { release = { opt-level = 3 } }
-
-# target.x86_64-pc-windows-msvc.dependencies = { serde = { version = "1.0", features = [
-#     "derive",
 [package]
 name = "cargo-wat"
 version = "0.1.0"
 edition = "2021"
 
-[features]
-default = []
-wasm = ["getrandom/js","getrandom/test-in-browser"]
-
 [dependencies]
 rand = { version = "0.8" }
-getrandom = { version = "0.2", optional = true }
+# inline array
+getrandom = { version = "0.2", features = ["std", "test-in-browser"] }
 
-[target.'cfg(windows)'.dependencies]
-winapi = { version = "0.3.9", features = ["winuser"] }
+# Array of tables
+[[bin]]
+name = "example"
+path = "src/bin/example.rs"
 
-# [profile.dev]
-# opt-level = 3
-
-
-# [dependencies.getrandom-js]
-# package = "getrandom"
-# version = "0.2"
-# optional = true
-# features = ["js"]
-
-# [features]
-# default = []
-# rand_support = ["rand"]
-# async_support = ["tokio_with_full_and_sync"]
-
-# [dependencies]
-
-# rand = { version = "0.8", optional = true }
-# tokio = { version = "1.0", optional = true }
-# tokio_with_full_and_sync = { package = "tokio", version = "1.0", optional = true, features = [
-#     "full",
-#     "sync",
-# ] }
-# package = "tokio"
-# version = "1.0"
-# optional = true
-# features = ["full", "sync"]
-
-
-# [dependencies]
-# serde = "1.0"
-# # dependencies = { serde = "1.0" }
-
-# [target.x86_64-pc-windows-msvc.dependencies]
-# dependencies = { serde = { version = "1.0", features = ["derive"] } }
-# # serde = { version = "1.0", features = ["derive"] }
-# # [profile]
-# # release.opt-level = 2
-
-# # []
-
-# [package]
-# name = "cargo-wat"
-# version = "0.1.0"
-# edition = "2021"
-
-# [dependencies]
-# serde = "1.0"
-
-# sample [[bin]]
-
-# [[bin]]
-# name = "example"
-# path = "src/bin/example.rs"
-
-# [[bin]]
-# name = "another"
-# path = "src/bin/another.rs"
+[[bin]]
+name = "another"
+path = "src/bin/another.rs"
 
 # bins = [
 #     { name = "example", path = "src/bin/example.rs" },
