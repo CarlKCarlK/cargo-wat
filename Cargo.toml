@@ -4,11 +4,12 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-rand = { version = "0.8" }
-# inline array
+rand = "0.8"
 getrandom = { version = "0.2", features = ["std", "test-in-browser"] }
 
-# Array of tables
+[target.x86_64-pc-windows-msvc.dependencies]
+winapi = { version = "0.3.9", features = ["winuser"] }
+
 [[bin]]
 name = "example"
 path = "src/bin/example.rs"
@@ -16,8 +17,3 @@ path = "src/bin/example.rs"
 [[bin]]
 name = "another"
 path = "src/bin/another.rs"
-
-# bins = [
-#     { name = "example", path = "src/bin/example.rs" },
-#     { name = "another", path = "src/bin/another.rs" },
-# ]
