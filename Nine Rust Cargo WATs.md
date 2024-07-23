@@ -11,7 +11,7 @@ yourself. Finally and most importantly, when you learn the Nine Wats, you will b
 
 This list is not about "fixing" `Cargo.toml`. It's already great at its main purpose: specifying the configuration and dependencies of a Rust project. Instead, this list is about understanding the format and its quirks.
 
-## Wat 1: Dependencies and Profile Section Names
+## Wat 1: Depenancies and Profile Section Names
 
 You probably know how to use add a `[dependencies]` section to your `Cargo.toml`. It specifies release dependencies, for example:
 
@@ -46,102 +46,39 @@ or
 release.opt-level = 3
 ```
 
-Indeed, if you want forgo all section notation in the file and use only dots:
+Similary, for release, develepment, and build you can specify profiles. A profile sets options for, for example, optimization level and whether to include debugging information.
 
-```toml
-profile.release.opt-level = 3
-```
+A given profile is a set of configuration options. For example, you can specify the optimization level and whether to include debugging information.
 
-or, no section notation and no dots:
+Guess th
 
-```toml
-profile = { release = { opt-level = 3 } }
-```
+A profile is a set of configuration options that can be used to customize the compilation process. For example optimization level
+The two most common profiles are `release` and `dev`. You probably know that you use `[profile.release]` to specify the release profile.
 
-## Wat 2: Inheritance
+Profiles sections are for
 
-You might argue that dots are fine for profiles, but hyphens are better for
-dependencies because `[dev-dependencies]` inherits from `[dependencies]`. In other words, the dependencies in `[dependencies]` are also available in `[dev-dependencies]`.
+But did you know that you use `[profile.dev]` to specify the development profile? This inconsistency can be confusing.
 
-So, does this mean that `[build-dependencies]` inherits from `[dependencies]`?
+But did you know that you use `[profile.dev]` to specify the development profile? This inconsistency can be confusing.
+how to set your release and development de
 
-No! `[build-dependencies]` does not inherit from `[dependencies]`. Wat?
-
-## Wat 3: Default Keys
-
-You likely know that instead of this:
-
-```toml
-[dependencies]
-serde = { version = "1.0" }
-```
-
-you can write this:
-
-```toml
-[dependencies]
-serde = "1.0"
-```
-
-What's the principle here? How in TOML do you designate one key as the default key?
-
-You can't! TOML has no default keys. Wat?
-
-Cargo TOML does special processing on the `version` key in the `[dependencies]` section. This is a Cargo-specific feature, not a TOML feature. As far as I can tell, Cargo TOML offers no other default keys.
-
-4 features = [“skdfsd”, You can subfeatures two ways, but the inline way isn’t TOML’s inline syntax. Related to features that require features
-5 target.TARGET where TARGET is a target name or cfg expression
-6 Target.TARGET can only prefix dependency related sections, not other sections
-7 'cfg(…)' expressions can use only target\_ related attributes and generic
-
-ot
-
-8 ## not wat Syntax 2 for tables is supported
-9 ## not wat
-
+Inconsistent Target and Profile Names
+Dependencies:
+toml
+[dependencies] serde = "1.0" [dev-dependencies] anyhow = "1.0"
+Profiles:
+toml
+[profile.dev] opt-level = 0 debug = true
+WAT: Dependencies use hyphens while profiles use dot notation, leading to inconsistency.
+Target.TARGET can only prefix dependency related sections
+'cfg(…)' expressions allowed only in TARGET
+'cfg(…)’ expressions not required in target.TARGET
+Full target name also allowedw
+TOML allows top-level in-line keys. Cargo TOML doen’t
+TOML has no default keys. Cargo TOML has ‘version’
 TOML offers two syntaxes for lists. Cargo TOML does too but always requires one or the other.
 [[bin]]
-
-## Wat Not: Lists
-
-TOML offers two syntaxes for lists:
-
-```toml
-a = [{b = 1}, {b = 2}]
-```
-
-or
-
-```toml
-[[a]]
-b = 1
-[[a]]
-b = 2
-```
-
-This is legal in Cargo TOML:
-
-```toml
-[dependencies]
-serde = { version = "1.0", features = ["derive", "std"] }
-```
-
-So, is this?
-
-```toml
-[dependencies]
-serde.version = "1.0"
-[[serde.features]]
-derive = true
-[[serde.features]]
-std = true
-
-```
-
-```
-
-```
-
-```
-
-```
+features = [“skdfsd”,
+TOML allows two syntaxes for tables. Cargo TOML does too but always requires one or the other expect in one place.
+You can subfeatures two ways, but the inline way isn’t TOML’s inline syntax
+Related to features that require features
