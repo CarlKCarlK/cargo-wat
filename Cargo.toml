@@ -1,50 +1,12 @@
-[package]
-name = "cargo-wat"
-version = "0.1.0"
-edition = "2021"
-
-[dependencies.rand]
-version = "0.8"
-
-[dependencies.getrandom]
-version = "0.2"
-features = ["std", "test-in-browser"]
-
-[target.x86_64-pc-windows-msvc.dependencies.winapi]
-version = "0.3.9"
-features = ["winuser"]
-
-[[bin]]
-name = "example"
-path = "src/bin/example.rs"
-
-[[bin]]
-name = "another"
-path = "src/bin/another.rs"
-
-
-# dependencies.rand.version = "0.8"
-# dependencies.rand.getrandom = { version = "0.2", features = [
-#     "std",
-#     "test-in-browser",
-# ] }
-# dependencies.rand.getrandom = {  = "0.2", features = [
-#     "std",
-#     "test-in-browser",
-# ] }
-
-
-# dependencies.getrandom.version = "0.2"
-# dependencies.getrandom.features = ["std", "test-in-browser"]
-
-
-# target.x86_64-pc-windows-msvc.dependencies.winapi.version = "0.3.9"
-# target.x86_64-pc-windows-msvc.dependencies.winapi.features = ["winuser"]
-
-# [[bin]]
-# name = "example"
-# path = "src/bin/example.rs"
-
-# [[bin]]
-# name = "another"
-# path = "src/bin/another.rs"
+package.name = "cargo-wat"
+package.version = "0.1.0"
+package.edition = "2021"
+dependencies.rand = "0.8"
+dependencies.getrandom.version = "0.2"
+dependencies.getrandom.features = ["std", "test-in-browser"]
+target.x86_64-pc-windows-msvc.dependencies.winapi.version = "0.3.9"
+target.x86_64-pc-windows-msvc.dependencies.winapi.features = ["winuser"]
+bins = [
+    { name = "example", path = "src/bin/example.rs" },
+    { name = "another", path = "src/bin/another.rs" },
+]
