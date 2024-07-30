@@ -1,43 +1,13 @@
-# # [package]
-package = { name = "cargo-wat", version = "0.1.0", edition = "2021" }
-# profile = { release = { opt-level = 3 } }
-
-# target.x86_64-pc-windows-msvc.dependencies = { serde = { version = "1.0", features = [
-#     "derive",
-# ] } }
-
-
-[dependencies]
-serde = "1.0"
-# dependencies = { serde = "1.0" }
-
-[target.x86_64-pc-windows-msvc]
-dependencies = { serde = { version = "1.0", features = ["derive"] } }
-# serde = { version = "1.0", features = ["derive"] }
-# [profile]
-# release.opt-level = 2
-
-# # []
-
-# [package]
-# name = "cargo-wat"
-# version = "0.1.0"
-# edition = "2021"
-
-# [dependencies]
-# serde = "1.0"
-
-# sample [[bin]]
-
-# [[bin]]
-# name = "example"
-# path = "src/bin/example.rs"
-
-# [[bin]]
-# name = "another"
-# path = "src/bin/another.rs"
-
+package.name = "cargo-wat"
+package.version = "0.1.0"
+package.edition = "2021"
+package.license = "MIT OR Apache-2.0"
+dependencies.rand = "0.8"
+dependencies.getrandom.version = "0.2"
+dependencies.getrandom.features = ["std", "test-in-browser"]
+target.x86_64-pc-windows-msvc.dependencies.winapi.version = "0.3.9"
+target.x86_64-pc-windows-msvc.dependencies.winapi.features = ["winuser"]
 bins = [
     { name = "example", path = "src/bin/example.rs" },
-    { name = "another", path = "src/bin/another.rs" }
+    { name = "another", path = "src/bin/another.rs" },
 ]
